@@ -52,9 +52,11 @@ mjd.getLinks().then(() => {
 
 ## Notes
 - Links (`apiRes.body.links`, `apiRes.body.values[i].links`) are transformed from arrays of dictionaries (`[{rel: ..., uri: ...}]`) into flat dictionaries (`{self: <uri>, nextPage: <uri>, prevPage: <uri>}`) for convenience.
-- `.request([method='GET'], url)` returns a pre-signed [superagent](http://visionmedia.github.io/superagent/) request object configured to accept JSON and with support for relative URLs. If you need a different return type, simply override it with `.set('Accept', ...)`.
-- `.(get|post|put|delete)` are convenience functions for `.request`.
+- `.request([method='GET'], url, [options={}])` returns a pre-signed [superagent](http://visionmedia.github.io/superagent/) request object configured to accept JSON and with support for relative URLs. If you need a different return type, simply override it with `.set('Accept', ...)`.
+- `.(get|post|put|delete)` are convenience wrappers for `.request`.
 - Requires node 4.x or above.
+- URL interpolation is supported via the `options` parameter to `.request` and its convenience wrappers
+	- e.g. `mjd.get(mjd.links.organizationMaintenancePlans, {orgId: 12345})`
 
 ## Test server
 A small [express](https://github.com/strongloop/express/) server is included for testing and as an example implementation. To use it, you'll need to drop in a `settings.js` file:
@@ -77,4 +79,3 @@ Issues and pull requests welcome.
 
 - Embeds
 - Recursive calls
-- Link interpolation

@@ -114,21 +114,35 @@ MyJohnDeere.prototype._getAccessToken = function() {
 	})
 }
 
-MyJohnDeere.prototype.request = function(method, url) {
+MyJohnDeere.prototype.request = function(method, url, options) {
 	if (!this.oauth) {
 		this._createOAuthContext()
 	}
 
-	// Allow normal request(url) shorthand
-	if (1 == arguments.length) {
-		url = method
-		method = 'GET'
+	// Allow omitting method
+	if (typeof url === 'object' || url === undefined) {
+		options = url
+		url     = method
+		method  = 'GET'
 	}
+
+	options = options || {}
 
 	// Allow relative URLs
 	if (url.startsWith('/')) {
 		url = this.properties.apiUrl + url
 	}
+
+	// Allow URL interpolation
+	_.each(Object.keys(options), key => {
+		if (url.includes(`{${key}}`)) {
+			url = url.replace(`{${key}}`, options[key])
+			delete options[key]
+		}
+	})
+console.log('url: ' + url)
+console.log('method: ' + method)
+console.log('options: ' + JSON.stringify(options))
 
 	// Create request instance
 	var r = request(method, url)
@@ -164,9 +178,9 @@ MyJohnDeere.prototype.request = function(method, url) {
 }
 
 // Convenience functions
-MyJohnDeere.prototype.get    = function(url) {return this.request('GET',    url)}
-MyJohnDeere.prototype.post   = function(url) {return this.request('POST',   url)}
-MyJohnDeere.prototype.put    = function(url) {return this.request('PUT',    url)}
-MyJohnDeere.prototype.delete = function(url) {return this.request('DELETE', url)}
+MyJohnDeere.prototype.get    = function(url, options) {return this.request('GET',    url, options)}
+MyJohnDeere.prototype.post   = function(url, options) {return this.request('POST',   url, options)}
+MyJohnDeere.prototype.put    = function(url, options) {return this.request('PUT',    url, options)}
+MyJohnDeere.prototype.delete = function(url, options) {return this.request('DELETE', url, options)}
 
 module.exports = MyJohnDeere
