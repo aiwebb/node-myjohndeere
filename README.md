@@ -1,6 +1,6 @@
 # node-myjohndeere
 
-[MyJohnDeere API](https://developer.deere.com) helper utility for node.js.
+[MyJohnDeere API](https://developer.deere.com) helper library for node.js.
 
 ## Installation
 
@@ -72,3 +72,9 @@ From there, just run `node server.js` in the module directory.
 ## Contributing
 
 Issues and pull requests welcome.
+
+## TODO
+
+- Embeds
+- Recursive calls
+- Link interpolation
