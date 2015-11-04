@@ -32,7 +32,7 @@ var mjd = new MyJohnDeere(apiUrl, appId, appSecret)
 // oauth_token and oauth_verifier are from URL query params
 mjd.getAccessToken(oauth_token, requestTokenSecret, oauth_verifier)
 	.then(access => {
-		// Save access.token and access.secret - they're good for up to one year
+		// Save access.token and access.tokenSecret - they're good for up to one year
 	})
 ```
 
@@ -52,8 +52,8 @@ mjd.getLinks().then(() => {
 
 ## Notes
 - Links (`apiRes.body.links`, `apiRes.body.values[i].links`) are transformed from arrays of dictionaries (`[{rel: ..., uri: ...}]`) into flat dictionaries (`{self: <uri>, nextPage: <uri>, prevPage: <uri>`}) for convenience.
-- `mjd.request([method='GET'], url)` returns a pre-signed [superagent](http://visionmedia.github.io/superagent/) request object configured to accept JSON and with support for relative URLs. If you need a different return type, simply override it with `.set('Accept', ...)`.
-- `mjd.(get|post|put|delete)` are convenience functions for `mjd.request`.
+- `.request([method='GET'], url)` returns a pre-signed [superagent](http://visionmedia.github.io/superagent/) request object configured to accept JSON and with support for relative URLs. If you need a different return type, simply override it with `.set('Accept', ...)`.
+- `.(get|post|put|delete)` are convenience functions for `.request`.
 - Requires node 4.x or above.
 
 ## Test server
