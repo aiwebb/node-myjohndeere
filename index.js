@@ -140,9 +140,6 @@ MyJohnDeere.prototype.request = function(method, url, options) {
 			delete options[key]
 		}
 	})
-console.log('url: ' + url)
-console.log('method: ' + method)
-console.log('options: ' + JSON.stringify(options))
 
 	// Create request instance
 	var r = request(method, url)
