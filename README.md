@@ -45,13 +45,13 @@ mjd.getLinks().then(() => {
 	mjd.get(mjd.links.files).end((err, apiRes) => {
 		// JSON result in apiRes.body
 
-		// can continue with e.g. mjd.get(apiRes.links.nextPage)
+		// can continue with e.g. mjd.get(apiRes.body.links.nextPage)
 	})
 })
 ```
 
 ## Notes
-- Links (`apiRes.body.links`, `apiRes.body.values[i].links`) are transformed from arrays of dictionaries (`[{rel: ..., uri: ...}]`) into flat dictionaries (`{self: <uri>, nextPage: <uri>, prevPage: <uri>`}) for convenience.
+- Links (`apiRes.body.links`, `apiRes.body.values[i].links`) are transformed from arrays of dictionaries (`[{rel: ..., uri: ...}]`) into flat dictionaries (`{self: <uri>, nextPage: <uri>, prevPage: <uri>}`) for convenience.
 - `.request([method='GET'], url)` returns a pre-signed [superagent](http://visionmedia.github.io/superagent/) request object configured to accept JSON and with support for relative URLs. If you need a different return type, simply override it with `.set('Accept', ...)`.
 - `.(get|post|put|delete)` are convenience functions for `.request`.
 - Requires node 4.x or above.
