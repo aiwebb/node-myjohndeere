@@ -1,0 +1,30 @@
+{
+  "name": "myjohndeere",
+  "version": "0.1.0",
+  "description": "Helper utility for MyJohnDeere API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexwebb2/node-myjohndeere.git"
+  },
+  "author": "Alex Webb <alexwebb2@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexwebb2/node-myjohndeere/issues"
+  },
+  "homepage": "https://github.com/alexwebb2/node-myjohndeere",
+  "dependencies": {
+    "lodash": "^3.10.1",
+    "oauth": "^0.9.14",
+    "superagent": "^1.4.0",
+    "superagent-oauth": "^0.2.3"
+  },
+  "devDependencies": {
+    "express": "^4.13.3",
+    "ip": "^1.0.2"
+  },
+  "engines" : { "node" : ">=4.x" }
+}
